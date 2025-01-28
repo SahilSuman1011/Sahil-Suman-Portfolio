@@ -3,7 +3,8 @@
 
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes"
-import type { ThemeProviderProps } from "next-themes"
+import { ThemeProviderProps } from "next-themes"
+
 
 export default function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   const [mounted, setMounted] = React.useState(false)
