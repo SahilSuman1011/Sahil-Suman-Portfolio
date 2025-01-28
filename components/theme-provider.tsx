@@ -1,28 +1,22 @@
-// theme-provider.tsx
-"use client"
+'use client'; // This line tells Next.js this is a Client Component
 
-import * as React from "react"
-import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes"
-import { ThemeProviderProps } from "next-themes"
+import * as React from "react";
+import { ThemeProvider as NextThemesProvider, ThemeProviderProps } from "next-themes";
 
-
-export default function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  const [mounted, setMounted] = React.useState(false)
+// Correct typing for props based on NextThemesProvider
+export default function ThemeProvider({
+  children,
+  ...props
+}: React.PropsWithChildren<ThemeProviderProps>) {
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return <div>{children}</div>;
   }
 
-  return (
-    <NextThemesProvider {...props}>
-      <div className="theme-transition">{children}</div>
-    </NextThemesProvider>
-  )
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
-
-// Explicitly export the useTheme hook from next-themes
-export { useNextTheme as useTheme }

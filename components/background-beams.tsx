@@ -1,11 +1,10 @@
-// background-beams.tsx
 "use client"
 
 import { useEffect, useRef } from "react"
-import { useTheme } from "./theme-provider"  // Import useTheme from theme-provider
+import { useTheme } from "next-themes"  // Correct import from next-themes
 
 export const BackgroundBeams = () => {
-  const { theme } = useTheme()  // Access useTheme directly
+  const { theme } = useTheme()  // Access useTheme directly from next-themes
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
